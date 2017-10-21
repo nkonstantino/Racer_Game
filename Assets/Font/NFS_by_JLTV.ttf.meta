@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 44d2cb22c144905459f5994d1d720f3c
+timeCreated: 1502074221
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: NFS font
+  fontNames:
+  - NFS font
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
