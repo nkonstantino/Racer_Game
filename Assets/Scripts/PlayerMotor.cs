@@ -13,6 +13,8 @@ public class PlayerMotor : MonoBehaviour {
     public float maxspeed = 350f; //speed when hitting boost
 	public float turnspeed = 75f;
 	public float tilt = 10f;
+
+    private bool hasShield;
 	
 	public float fuel = 100f;
 	private float fueldelay = 0.5f;
@@ -37,9 +39,16 @@ public class PlayerMotor : MonoBehaviour {
     public ParticleSystem speedEffect;
 	public ParticleSystem shipSpeedup;
     public ParticleSystem PowerSphereEffect;
-	
-    
+    public ParticleSystem ShieldEffect;
+    //public GameObject shield;
+    public Material normalMat;
+    public Material shieldedMat;
+    public GameObject PlayerMesh;
+    private Renderer rend;
+
+    private AudioSource audio;
     public AudioClip boostsfx;
+    public AudioClip shieldHit;
 
     private Animator anim;
 
@@ -54,10 +63,15 @@ public class PlayerMotor : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 		gc = GameObject.FindWithTag ("GameController").GetComponent<GameController> ();
         anim = GetComponent<Animator>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        hasShield = false;
+        //shield.SetActive(false);
+        rend = PlayerMesh.GetComponent<Renderer>();
+        audio = GetComponent<AudioSource>();
+
+    }
+
+    // Update is called once per frame
+    void Update () {
         speedup();
 		checkSpeed ();
 		movePlayer ();
@@ -66,7 +80,16 @@ public class PlayerMotor : MonoBehaviour {
 
 	private void OnControllerColliderHit(ControllerColliderHit hit){
 		if (hit.gameObject.tag == "Obstacle") {
-			Death ();
+            if (hasShield)
+            {
+                Debug.Log("Destroy shield!");
+                Destroy(hit.gameObject);
+                SetShield(false);
+            } else
+            {
+                Death();
+            }
+			
 		}
 	}
 
@@ -87,6 +110,21 @@ public class PlayerMotor : MonoBehaviour {
 		}
 
 	}
+
+    public void SetShield(bool ShieldStatus)
+    {
+        hasShield = ShieldStatus;
+        if (hasShield)
+        {
+            //shield.SetActive(true);
+            rend.material = shieldedMat;
+        } else
+        {
+            //shield.SetActive(false);
+            audio.PlayOneShot(shieldHit, 0.7f);
+            rend.material = normalMat;
+        }
+    }
 
 	private void movePlayer(){
 		moveVector = Vector3.zero;
@@ -177,14 +215,6 @@ public class PlayerMotor : MonoBehaviour {
 			}
 		}
 	}
-
-    private void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.CompareTag("SpeedBoost"))
-        {
-
-        }
-    }
 
     public void Death(){
 		speedEffect.Stop ();

@@ -6,7 +6,7 @@ public class obstacle : MonoBehaviour {
 
 	private GameController gameController;
 
-	private PlayerMotor player;
+	//private PlayerMotor player;
 
 	// Use this for initialization
 	void Start () {
@@ -21,11 +21,11 @@ public class obstacle : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		if (other.tag == "Player") {
-			Debug.Log ("GAMEOVER");
-			player = other.GetComponent<PlayerMotor> ();
-			gameController.GameOver ();
+			//Debug.Log ("GAMEOVER");
+			//player = other.GetComponent<PlayerMotor> ();
+			//gameController.GameOver ();
 			//Destroy (other.gameObject);
-			player.Death();
+			//player.Death();
 		}
 	}
 

@@ -174,7 +174,7 @@ public class GameController : MonoBehaviour {
         screenPosition.y += 75; //adjust y
         instance.transform.SetParent(canvas.transform, false);
         instance.transform.position = screenPosition;
-        instance.SetText(text+"x");
+        instance.SetText(text);
     }
 
 	public void SetMultiplier(int newValue = 1){
@@ -182,7 +182,7 @@ public class GameController : MonoBehaviour {
             playerSpeed = playerController.speed;
             Debug.Log(playerSpeed);
             boostMultiplier = newValue;
-            createPopup(newValue.ToString(), player.transform);
+            createPopup(newValue.ToString()+"x", player.transform);
             BonusDisplayColor.ChangeModifierColor(boostMultiplier - 1);
             boostBar.Value(Time.time+playerController.bonusTime, playerController.bonusTime);
             combocount += 1;
@@ -220,6 +220,14 @@ public class GameController : MonoBehaviour {
             DisplayScore();
 
         }
+    }
+
+    public void bonusScore(float bonusScore)
+    {
+        score += bonusScore;
+        //Debug.Log("BONUS!");
+        DisplayScore();
+        createPopup("+"+bonusScore.ToString(), player.transform);
     }
 
 	void DisplayScore(){

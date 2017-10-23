@@ -10,6 +10,7 @@ TagManager:
   - SpeedEffect
   - connector
   - BoostBar
+  - Shield
   layers:
   - Default
   - TransparentFX
