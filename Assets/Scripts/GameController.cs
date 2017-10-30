@@ -215,7 +215,7 @@ public class GameController : MonoBehaviour {
         {
             playerSpeed = playerController.speed;
             playerDistance = Vector3.Distance(playerStartPosition.position, transform.position);
-            int newScoreValue = Mathf.CeilToInt(((playerSpeed + playerDistance) / 500) * boostMultiplier);
+            int newScoreValue = Mathf.CeilToInt(((playerSpeed + playerDistance) / 5000) * boostMultiplier);
             score += newScoreValue;
             DisplayScore();
 
@@ -224,16 +224,17 @@ public class GameController : MonoBehaviour {
 
     public void bonusScore(float bonusScore)
     {
-        score += bonusScore;
+        float truebonus = bonusScore * boostMultiplier;
+        score += truebonus;
         //Debug.Log("BONUS!");
         DisplayScore();
-        createPopup("+"+bonusScore.ToString(), player.transform);
+        createPopup("+"+truebonus.ToString(), player.transform);
     }
 
 	void DisplayScore(){
 		if (gameOver) {
 			GOScoreDisplayText.text = "Score \n" + string.Format ("{0:G}", score);
-			ScoreDisplayText.text =  "Max Combo \n" + maxcombocount;
+			ScoreDisplayText.text = "Max Combo \n<color=#FFF42CFF>" + maxcombocount+"</color>";
 			BonusDisplayText.text = "";
 		} else {
 			ScoreDisplayText.text = "Score \n" + string.Format("{0:G}",score);

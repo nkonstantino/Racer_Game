@@ -146,6 +146,7 @@ MonoBehaviour:
   maxspeed: 350
   turnspeed: 75
   tilt: 10
+  consecutiveBoost: 0
   fuel: 100
   processingProfile: {fileID: 11400000, guid: cd5468360d3dab84e800b7e4fe40a61e, type: 2}
   boosting: 0
@@ -162,6 +163,7 @@ MonoBehaviour:
   PlayerMesh: {fileID: 1064571281}
   boostsfx: {fileID: 8300000, guid: 83c3d681839fe3e4e97b22c45fd942e5, type: 3}
   shieldHit: {fileID: 8300000, guid: 2e01d51005cb04a4bb487922c7b05324, type: 3}
+  ShieldCollectSound: {fileID: 8300000, guid: 45dc15ab7037d46458a8b0ecf5c3d10f, type: 3}
 --- !u!143 &116182910
 CharacterController:
   m_ObjectHideFlags: 0

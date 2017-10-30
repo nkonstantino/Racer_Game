@@ -109,8 +109,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PowerUpPrefabs:
   - {fileID: 1852419294519636, guid: d8feeff7c1f53d749ae6a1c517c5aa87, type: 2}
-  - {fileID: 1947831650389482, guid: ec97ea107a120ac4594666e4e6b74fe0, type: 2}
   - {fileID: 1852419294519636, guid: d8feeff7c1f53d749ae6a1c517c5aa87, type: 2}
+  - {fileID: 1852210052520644, guid: 4af8d4b9823e66343b9a9a4f5a1480f2, type: 2}
   - {fileID: 1852210052520644, guid: 4af8d4b9823e66343b9a9a4f5a1480f2, type: 2}
   - {fileID: 1852210052520644, guid: 4af8d4b9823e66343b9a9a4f5a1480f2, type: 2}
   - {fileID: 1852210052520644, guid: 4af8d4b9823e66343b9a9a4f5a1480f2, type: 2}

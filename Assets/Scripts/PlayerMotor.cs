@@ -15,8 +15,9 @@ public class PlayerMotor : MonoBehaviour {
 	public float tilt = 10f;
 
     private bool hasShield;
-	
-	public float fuel = 100f;
+    public int consecutiveBoost = 0;
+
+    public float fuel = 100f;
 	private float fueldelay = 0.5f;
     private float speedTime = 3f;
 
@@ -49,6 +50,7 @@ public class PlayerMotor : MonoBehaviour {
     private AudioSource audio;
     public AudioClip boostsfx;
     public AudioClip shieldHit;
+    public AudioClip ShieldCollectSound;
 
     private Animator anim;
 
@@ -117,7 +119,9 @@ public class PlayerMotor : MonoBehaviour {
         if (hasShield)
         {
             //shield.SetActive(true);
+            ShieldEffect.Play();
             rend.material = shieldedMat;
+            audio.PlayOneShot(ShieldCollectSound, 1f);
         } else
         {
             //shield.SetActive(false);

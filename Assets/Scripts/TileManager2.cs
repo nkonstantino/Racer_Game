@@ -90,7 +90,7 @@ public class TileManager2 : MonoBehaviour {
 		while (randomIndex == lastTileIndex) {
 			randomIndex = Random.Range (1, tilePrefabs.Length);
 		}
-		//if hardmode then random
+		//if hardmode then random?
 
 		lastTileIndex = randomIndex;
 

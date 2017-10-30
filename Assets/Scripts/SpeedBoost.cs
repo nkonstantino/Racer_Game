@@ -5,13 +5,15 @@ using UnityEngine;
 public class SpeedBoost : MonoBehaviour {
 
 	private GameController gameController;
+    private bool collected;
+    private PlayerMotor player;
 
-	// Use this for initialization
-	void Start () {
-
+    // Use this for initialization
+    void Start () {
+        collected = false;
 		GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
-
-		if(gameControllerObject != null){
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerMotor>();
+        if (gameControllerObject != null){
 			gameController = gameControllerObject.GetComponent<GameController> ();
 		}
 		if (gameControllerObject == null) {
@@ -21,9 +23,11 @@ public class SpeedBoost : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		if (other.tag == "Player") {
+            collected = true;
 			PlayerMotor playerSpeed = other.GetComponent<PlayerMotor>();
             AudioSource audio = other.GetComponent<AudioSource>();
-			playerSpeed.speed = playerSpeed.maxspeed;
+            playerSpeed.consecutiveBoost = playerSpeed.consecutiveBoost + 1;
+            playerSpeed.speed = playerSpeed.maxspeed;
             playerSpeed.boosting = true;
 			playerSpeed.boostStart = Time.time;
 			playerSpeed.shipSpeedup.Play ();
@@ -37,12 +41,25 @@ public class SpeedBoost : MonoBehaviour {
 				gameController.SetMultiplier (10);
 			}
 
+            if(playerSpeed.consecutiveBoost > 4)
+            {
+                playerSpeed.SetShield(true);
+                playerSpeed.consecutiveBoost = 0;
+            }
+
 			Destroy (gameObject);
 		}
 	}
 
-	// Update is called once per frame
-	void Update () {
-
+    // Update is called once per frame
+    void OnDestroy() {
+        if (player)
+        {
+            if (!collected)
+            {
+                player.consecutiveBoost = 0;
+            }
+        }
+        
 	}
 }

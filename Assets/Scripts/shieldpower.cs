@@ -9,7 +9,7 @@ public class shieldpower : MonoBehaviour {
 
     void Start()
     {
-        animator.Play("backforth");
+        //animator.Play("backforth");
     }
 
     void OnTriggerEnter(Collider other)
